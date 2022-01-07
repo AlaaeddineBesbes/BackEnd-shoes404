@@ -1,9 +1,9 @@
 function createCategorie(req, res) {
     let Categorie = require('../models/Categorie');
     let newCategorie = Categorie ({
-        nom: req.body.nom,
+        title: req.body.title,
         description : req.body.description,
-        id_Boutique : req.body.id_Boutique
+        id_boutique : req.body.id_boutique
     });
   
     newCategorie.save()
@@ -22,9 +22,11 @@ function readCategories(req, res) {
 
     let Categorie = require("../models/Categorie");
 
-    Categorie.find({})
-    .then((Categories) => {
-        res.status(200).json(Categories);
+    Categorie.find({
+        id_boutique:req.params.id
+    })
+    .then((categories) => {
+        res.status(200).json(categories);
     }, (err) => {
         res.status(500).json(err);
     });

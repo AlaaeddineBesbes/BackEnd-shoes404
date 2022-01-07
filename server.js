@@ -27,7 +27,6 @@ const mongoose = require('mongoose');
 
 //Create an application 
 const app = express();
-
 //used to fetch the data from forms on HTTP POST, and PUT
 app.use(bodyParser.urlencoded({
 
@@ -84,6 +83,11 @@ const produitRoutes = require('./routes/Produit');
 const categorieRoutes = require('./routes/Categorie');
 
 //Acces the routes 
+app.use(function(req,res,next){
+res.header("Access-Control-Allow-Origin","*");
+res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
+next();
+})
 app.use('/api/v1/',produitRoutes);
 app.use('/api/v1/',boutiqueRoutes);
 app.use('/api/v1/',categorieRoutes);

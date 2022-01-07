@@ -5,7 +5,7 @@ const router = require('express').Router();
 const controller = require('../controllers/Boutique');
 
 //CREATE
-router.post("/Boutique", (req, res) => {
+router.post("/Boutique/:id", (req, res) => {
 
     controller.create(req, res);
 
