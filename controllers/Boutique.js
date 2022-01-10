@@ -1,7 +1,7 @@
 function createBoutique(req, res) {
     let Boutique = require('../models/Boutique');
     let newBoutique = Boutique ({
-        nom: req.body.nom,
+        title: req.body.title,
         description : req.body.description
     });
   

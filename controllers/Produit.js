@@ -1,10 +1,10 @@
 function createProduit(req, res) {
     let Produit = require('../models/Produit');
     let newProduit = Produit ({
-        nom: req.body.nom,
+        title: req.body.title,
         description : req.body.description,
         prix : req.body.prix,
-        id_Categorie : req.body.id_Categorie
+        id_categorie : req.body.id_categorie
     });
   
     newProduit.save()
@@ -23,7 +23,9 @@ function readProduits(req, res) {
 
     let Produit = require("../models/Produit");
 
-    Produit.find({})
+    Produit.find({
+        id_categorie:req.params.id
+    })
     .then((Produits) => {
         res.status(200).json(Produits);
     }, (err) => {

@@ -5,14 +5,14 @@ const router = require('express').Router();
 const controller = require('../controllers/Produit');
 
 //CREATE
-router.post("/Produit", (req, res) => {
+router.post("/Produit/", (req, res) => {
 
     controller.create(req, res);
 
 });
 
 //READ
-router.get("/Produits", (req, res) => {
+router.get("/Produits/:id", (req, res) => {
     
     controller.reads(req, res);
 

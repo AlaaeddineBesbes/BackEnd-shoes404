@@ -31,7 +31,7 @@ var corsOptions = {
   origin: 'http://localhost:8100',
   optionsSuccessStatus: 200 // For legacy browser support
 }
-app.use(cors());
+app.use(cors(corsOptions));
 //used to fetch the data from forms on HTTP POST, and PUT
 app.use(bodyParser.urlencoded({
 
