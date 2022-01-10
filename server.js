@@ -2,7 +2,7 @@
 //Use Express middleware to manage incoming requests and 
 //dispatch them to corresponding behaviours
 const express = require('express');
-
+const cors = require('cors');
 //Use chalk to add colours on the console
 const chalk = require('chalk');
 
@@ -27,6 +27,11 @@ const mongoose = require('mongoose');
 
 //Create an application 
 const app = express();
+var corsOptions = {
+  origin: 'http://localhost:8100',
+  optionsSuccessStatus: 200 // For legacy browser support
+}
+app.use(cors());
 //used to fetch the data from forms on HTTP POST, and PUT
 app.use(bodyParser.urlencoded({
 
@@ -83,9 +88,11 @@ const produitRoutes = require('./routes/Produit');
 const categorieRoutes = require('./routes/Categorie');
 
 //Acces the routes 
+
 app.use(function(req,res,next){
 res.header("Access-Control-Allow-Origin","*");
-res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
+res.header("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS");
+res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 next();
 })
 app.use('/api/v1/',produitRoutes);
